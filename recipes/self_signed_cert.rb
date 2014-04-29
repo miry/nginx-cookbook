@@ -12,12 +12,13 @@ ruby_block 'generate self-signed cert' do
     require 'openssl'
     require 'securerandom'
 
-    subject_attr_mapping = {
-        common_name: 'CN', country: 'C', state: 'ST', city: 'L', organization: 'O',
-        department:  'OU', email: 'emailAddress'
-    }
 
     def build_subject(options)
+      subject_attr_mapping = {
+          common_name: 'CN', country: 'C', state: 'ST', city: 'L', organization: 'O',
+          department:  'OU', email: 'emailAddress'
+      }
+
       subject = ''
       options.each_pair do |attr, val|
         subject += "/#{subject_attr_mapping[attr]}=#{val}" if subject_attr_mapping.has_key?(attr)
