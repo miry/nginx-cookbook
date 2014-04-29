@@ -41,11 +41,11 @@ ruby_block 'generate self-signed cert' do
     def write_certificate_and_key_to_disk(c, k)
       ssl_path = node[:nginx][:ssl][:self_signed][:path]
 
-      File.open("#{ssl_path}/#{node[:nginx][:ssl][:self_signed][:cert]}") do |f|
+      ::File.open("#{ssl_path}/#{node[:nginx][:ssl][:self_signed][:cert]}") do |f|
         f.write c.to_pem # write cert to specified path and filename
       end
 
-      File.open("#{ssl_path}/#{node[:nginx][:ssl][:self_signed][:key]}" do |f|
+      ::File.open("#{ssl_path}/#{node[:nginx][:ssl][:self_signed][:key]}") do |f|
         f.write k.to_pem # write private key to specified path and filename
       end
     end
@@ -55,7 +55,7 @@ ruby_block 'generate self-signed cert' do
   end
 
   not_if do
-    File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:cert]}") &&
-        File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:key]}")
+    ::File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:cert]}") &&
+        ::File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:key]}")
   end
 end
