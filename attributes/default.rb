@@ -254,9 +254,10 @@ default[:nginx][:ssl][:prefer_server_ciphers] = "on"
 #
 default[:nginx][:ssl][:self_signed][:path] = false # ex: /etc/nginx/ssl
 default[:nginx][:ssl][:self_signed][:cert] = false # ex: foo.cert
-default[:nginx][:ssl][:self_signed][:key] = false # ex: foo.key
-default[:nginx][:ssl][:self_signed][:valid_days] = 15
-default[:nginx][:ssl][:self_signed][:subject] = {}
+default[:nginx][:ssl][:self_signed][:key]  = false # ex: foo.key
+default[:nging][:ssl][:self_signed][:force_update] = false
+default[:nginx][:ssl][:self_signed][:valid_days]   = 15
+default[:nginx][:ssl][:self_signed][:subject]      = {}
 # subject is a Hash of any of the following values
 #  common_name: 'foo.example.com',
 #  country: 'US',
