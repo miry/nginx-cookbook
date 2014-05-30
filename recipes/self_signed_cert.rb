@@ -24,7 +24,7 @@ ruby_block 'generate self-signed cert' do
       result = ''
       options.each_pair do |attr, val|
         puts ">> #{attr}: #{val}"
-        result += "/#{subject_attr_mapping[attr]}=#{val}" if subject_attr_mapping.has_key?(attr)
+        result += "/#{subject_attr_mapping[attr.to_sym]}=#{val}" if subject_attr_mapping.has_key?(attr.to_sym)
       end
       puts result
       puts "--------"
