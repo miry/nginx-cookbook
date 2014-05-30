@@ -60,6 +60,7 @@ ruby_block 'generate self-signed cert' do
   end
 
   not_if do
+    !node[:nginx][:ssl][:self_signed][:force_update] &&
     ::File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:cert]}") &&
         ::File.exists?("#{node[:nginx][:ssl][:self_signed][:path]}/#{node[:nginx][:ssl][:self_signed][:key]}")
   end
