@@ -14,7 +14,7 @@ ruby_block 'generate self-signed cert' do
 
 
     def build_subject(options)
-      log "Setup certificate subject"
+      puts "Setup certificate subject"
 
       subject_attr_mapping = {
           common_name: 'CN', country: 'C', state: 'ST', city: 'L', organization: 'O',
@@ -25,7 +25,7 @@ ruby_block 'generate self-signed cert' do
       options.each_pair do |attr, val|
         result += "/#{subject_attr_mapping[attr]}=#{val}" if subject_attr_mapping.has_key?(attr)
       end
-      log result
+      puts result
       result
     end
 
@@ -38,7 +38,7 @@ ruby_block 'generate self-signed cert' do
       certificate.not_after  = certificate.not_before + (node[:nginx][:ssl][:self_signed][:valid_days] * 24*60*60)
       certificate.public_key = key.public_key
       certificate.subject    = OpenSSL::X509::Name.parse build_subject(subject)
-      log certificate.subject
+      puts certificate.subject
       certificate.sign(key, OpenSSL::Digest::SHA256.new)
       [certificate, key]
     end
