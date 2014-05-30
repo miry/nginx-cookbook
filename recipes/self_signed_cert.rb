@@ -15,7 +15,7 @@ ruby_block 'generate self-signed cert' do
 
     def build_subject(options)
       puts "Setup certificate subject"
-
+      puts options.inspect
       subject_attr_mapping = {
           common_name: 'CN', country: 'C', state: 'ST', city: 'L', organization: 'O',
           department:  'OU', email: 'spam@example.com'
@@ -23,9 +23,11 @@ ruby_block 'generate self-signed cert' do
 
       result = ''
       options.each_pair do |attr, val|
+        puts ">> #{attr}: #{val}"
         result += "/#{subject_attr_mapping[attr]}=#{val}" if subject_attr_mapping.has_key?(attr)
       end
       puts result
+      puts "--------"
       result
     end
 
