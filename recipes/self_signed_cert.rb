@@ -18,7 +18,7 @@ ruby_block 'generate self-signed cert' do
       puts options.inspect
       subject_attr_mapping = {
           common_name: 'CN', country: 'C', state: 'ST', city: 'L', organization: 'O',
-          department:  'OU', email: 'spam@example.com'
+          department:  'OU', email: 'emailAddress'
       }
 
       result = ''
