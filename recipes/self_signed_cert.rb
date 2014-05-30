@@ -40,6 +40,7 @@ ruby_block 'generate self-signed cert' do
       certificate.not_after  = certificate.not_before + (node[:nginx][:ssl][:self_signed][:valid_days] * 24*60*60)
       certificate.public_key = key.public_key
       certificate.subject    = OpenSSL::X509::Name.parse build_subject(subject)
+      certificate.issuer     = certificate.subject
       puts certificate.subject
       certificate.sign(key, OpenSSL::Digest::SHA256.new)
       [certificate, key]
