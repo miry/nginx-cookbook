@@ -17,7 +17,7 @@ node[:nginx][:apt_packages].each do |nginx_package|
   end
 end
 
-%w[nginx nginx-common nginx-full].each do |nginx_package|
+%w[nginx nginx-common nginx-light].each do |nginx_package|
   bash "freeze #{nginx_package}" do
     code "echo #{nginx_package} hold | dpkg --set-selections"
     only_if "[ $(dpkg --get-selections | grep -c '#{nginx_package}\W*hold') = 0 ]"
