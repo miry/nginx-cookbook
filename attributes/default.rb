@@ -1,4 +1,4 @@
-default[:nginx][:version]           = "1.4.4"
+default[:nginx][:version]           = "1.6.2"
 default[:nginx][:version]           = "1.4.1" if node[:platform_version].to_f < 12.04
 default[:nginx][:apt_packages]      = %w[nginx-common nginx-full nginx]
 default[:nginx][:apt_keyserver]     = "keyserver.ubuntu.com"
